@@ -1,10 +1,8 @@
-## Software DOI
+## Software Availability
 
-The archived version of this software is available on **Zenodo**.
+The source code for **GenCyberGAN** is publicly archived on Zenodo to ensure long-term accessibility and reproducibility.
 
 **DOI:** https://doi.org/10.5281/zenodo.21274578
-
----
 
 # GenCyberGAN
 
