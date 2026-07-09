@@ -1,74 +1,265 @@
 # GenCyberGAN
 
-Functional PyTorch research prototype for **CTI-conditioned graph-temporal generation of cyberattack flow windows** and IDS augmentation.
+## Graph-Temporal Cyber Threat Intelligence Conditioned Generative Adversarial Network for Synthetic Intrusion Data Generation and Intelligent Cyberattack Detection
 
-The code implements the complete planned pipeline:
+GenCyberGAN is a PyTorch-based deep learning framework designed for generating realistic synthetic cyberattack traffic using a **Cyber Threat Intelligence (CTI)-conditioned Graph-Temporal Generative Adversarial Network (GAN)**. The generated samples are used to augment intrusion detection datasets and improve the performance of Intelligent Intrusion Detection Systems (IDS).
 
-1. Dataset loading and feature harmonization
-2. Cleaning, label harmonization, numerical scaling and categorical encoding
-3. Temporal sliding-window construction
-4. Heterogeneous communication graph descriptor extraction
-5. CTI tactic-technique-service mapping
-6. CTI-conditioned graph-temporal WGAN-GP generator
-7. Multi-critic training with flow critic, graph critic and CTI classifier
-8. Mahalanobis filtering of generated graph descriptors
-9. Downstream IDS training and evaluation
-10. Result CSV files, classification reports and confusion matrix plots
+The framework integrates graph learning, temporal modeling, CTI knowledge, and adversarial learning into a unified pipeline for cybersecurity research.
 
-## Installation
+---
+
+# Features
+
+- Graph-Temporal GAN architecture
+- Cyber Threat Intelligence (CTI) guided sample generation
+- Flow-level temporal window construction
+- Feature harmonization and preprocessing
+- Heterogeneous communication graph generation
+- Multi-Critic WGAN-GP training
+- Synthetic attack sample generation
+- Mahalanobis distance-based filtering
+- IDS training and evaluation
+- Automated performance reporting and visualization
+
+---
+
+# Repository Structure
+
+```
+GenCyberGAN/
+│
+├── configs/                 # Configuration files
+├── data/                    # Input datasets
+├── experiments/             # Experimental outputs
+├── results/                 # Generated results
+│
+├── src/
+│   ├── models/              # Generator, Critics, IDS Models
+│   ├── dataset_loader.py
+│   ├── data_preprocessing.py
+│   ├── feature_harmonizer.py
+│   ├── temporal_windowing.py
+│   ├── graph_builder.py
+│   ├── cti_mapping.py
+│   ├── losses.py
+│   ├── train_gencybergan.py
+│   ├── generate_synthetic.py
+│   ├── train_ids.py
+│   ├── evaluate.py
+│   └── utils.py
+│
+├── main.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# Workflow
+
+The complete GenCyberGAN pipeline consists of the following stages:
+
+1. Dataset Loading
+2. Data Cleaning and Feature Harmonization
+3. Numerical Scaling and Encoding
+4. Temporal Window Construction
+5. Communication Graph Generation
+6. CTI Knowledge Mapping
+7. Graph-Temporal GAN Training
+8. Synthetic Sample Generation
+9. Synthetic Sample Filtering
+10. IDS Model Training
+11. Performance Evaluation
+
+---
+
+# Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/your_username/GenCyberGAN.git
+```
+
+Navigate into the project directory
+
+```bash
+cd GenCyberGAN
+```
+
+Create a virtual environment
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+```
+
+Activate the environment
+
+### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Quick functional demo
+---
 
-The demo mode creates a small synthetic IDS-like flow dataset, so the repository runs without downloading external data.
+# Running the Complete Pipeline
+
+Execute the entire framework using
 
 ```bash
 python main.py --mode full
 ```
 
-Outputs are written to `results/`.
+---
 
-## Use with a real CSV IDS dataset
+# Individual Modules
 
-```bash
-python main.py --dataset unsw --raw_path /path/to/UNSW_NB15.csv --mode full --output_dir results_unsw
-```
-
-The loader automatically tries to harmonize common columns such as `srcip`, `dstip`, `proto`, `service`, `state`, `dur`, `sbytes`, `dbytes`, `attack_cat`, and `label`.
-
-## Individual stages
+### Data Preprocessing
 
 ```bash
 python main.py --mode preprocess
+```
+
+### Train GenCyberGAN
+
+```bash
 python main.py --mode train_gan
+```
+
+### Generate Synthetic Samples
+
+```bash
 python main.py --mode generate
+```
+
+### Train Intrusion Detection System
+
+```bash
 python main.py --mode train_ids
 ```
 
-## Main outputs
+---
 
-- `processed_train.npz`
-- `processed_val.npz`
-- `processed_test.npz`
-- `cti_vocab.json`
-- `label_mapping.json`
-- `gencybergan_generator.pt`
-- `flow_critic.pt`
-- `graph_critic.pt`
-- `synthetic_samples.npz`
-- `synthetic_samples_filtered.npz`
-- `ids_baseline.pt`
-- `ids_gencybergan.pt`
-- `results_baseline.csv`
-- `results_gencybergan.csv`
-- `classification_report_*.txt`
-- `confusion_matrix_*.png`
+# Using Your Own Dataset
 
-## Notes for paper experiments
+Example:
 
-For full SCI-level experiments, run separately on CICIDS2017, UNSW-NB15 and Bot-IoT after setting suitable CSV paths. Increase `gan_epochs` and `ids_epochs` in `configs/default.yaml` to 50-100 for real experiments. The default uses small epochs so the pipeline can be verified quickly.
+```bash
+python main.py --dataset unsw \
+--raw_path /path/to/UNSW_NB15.csv \
+--mode full \
+--output_dir results
+```
+
+The framework automatically harmonizes common network traffic features including:
+
+- Source IP
+- Destination IP
+- Protocol
+- Service
+- Duration
+- Source Bytes
+- Destination Bytes
+- Attack Category
+- Labels
+
+---
+
+# Output Files
+
+The framework generates:
+
+- Processed datasets
+- CTI vocabulary
+- Label mappings
+- Trained Generator
+- Flow Critic
+- Graph Critic
+- Synthetic samples
+- Filtered synthetic samples
+- IDS models
+- Classification reports
+- Confusion matrices
+- Performance metrics
+- CSV result files
+
+---
+
+# Supported Datasets
+
+The framework can be adapted for several cybersecurity datasets, including:
+
+- CICIDS2017
+- UNSW-NB15
+- Bot-IoT
+- CSE-CIC-IDS2018
+- TON_IoT
+- Other flow-based intrusion detection datasets
+
+---
+
+# Technologies Used
+
+- Python
+- PyTorch
+- NumPy
+- Pandas
+- Scikit-learn
+- NetworkX
+- Matplotlib
+- YAML
+
+---
+
+# Research Applications
+
+GenCyberGAN can be applied to:
+
+- Intrusion Detection Systems
+- Cyber Threat Intelligence
+- Network Security Analytics
+- Synthetic Cyberattack Generation
+- Security Data Augmentation
+- AI-driven Cybersecurity
+- Intelligent Threat Detection
+
+---
+
+# Citation
+
+If you use this repository in your research, please cite the associated publication.
+
+```text
+Author(s),
+Graph-Temporal Cyber Threat Intelligence Conditioned Generative Adversarial Network for Synthetic Intrusion Data Generation and Intelligent Cyberattack Detection,
+Year.
+```
+
+---
+
+# License
+
+This project is released for academic and research purposes.
+
+---
+
+# Contact
+
+For questions, collaborations, or research inquiries, please open an Issue in this repository or contact the corresponding author.
+
+---
+
+**Keywords:** Cybersecurity, Intrusion Detection, Generative Adversarial Networks, CTI, Graph Neural Networks, Deep Learning, Synthetic Data Generation, Network Security, Artificial Intelligence.
