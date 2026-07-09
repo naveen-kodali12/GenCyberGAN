@@ -1,0 +1,39 @@
+seed: 42
+output_dir: results
+
+data:
+  dataset_name: demo
+  raw_path: ""
+  label_col: label
+  timestamp_col: timestamp
+  max_rows: 1000
+  test_size: 0.2
+  val_size: 0.1
+  unseen_families: []
+  window_length: 30
+  stride: 5
+  label_rule: any_attack
+
+model:
+  z_dim: 16
+  cti_emb_dim: 8
+  cti_dim: 16
+  hidden_dim: 32
+  graph_desc_dim: 8
+  dropout: 0.1
+
+training:
+  gan_epochs: 1
+  ids_epochs: 1
+  batch_size: 16
+  critic_steps: 1
+  lr_g: 0.0001
+  lr_d: 0.0001
+  lr_ids: 0.001
+  gp_lambda: 0.0
+  lambda_graph: 1.0
+  lambda_cti: 0.2
+  lambda_temporal: 0.2
+  synthetic_per_class: 50
+  mahalanobis_threshold: 6.0
+  device: auto
