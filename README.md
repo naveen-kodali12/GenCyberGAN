@@ -256,10 +256,3 @@ This project is released for academic and research purposes.
 
 ---
 
-# Contact
-
-For questions, collaborations, or research inquiries, please open an Issue in this repository or contact the corresponding author.
-
----
-
-**Keywords:** Cybersecurity, Intrusion Detection, Generative Adversarial Networks, CTI, Graph Neural Networks, Deep Learning, Synthetic Data Generation, Network Security, Artificial Intelligence.
