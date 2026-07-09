@@ -1,9 +1,10 @@
-## 📌 Software Archive
+## Citation & Software Archive
 
-The official archived release of **GenCyberGAN Version 1.1** is available on Zenodo.
+The official archived release of **GenCyberGAN Version 1.1** is available through **Zenodo**.
 
-**Zenodo DOI:** https://doi.org/10.5281/zenodo.21274578
+**Persistent DOI:** **10.5281/zenodo.21274578**
 
+🔗 https://doi.org/10.5281/zenodo.21274578
 # GenCyberGAN
 
 ## Graph-Temporal Cyber Threat Intelligence Conditioned Generative Adversarial Network for Synthetic Intrusion Data Generation and Intelligent Cyberattack Detection
