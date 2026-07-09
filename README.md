@@ -78,7 +78,7 @@ The complete GenCyberGAN pipeline consists of the following stages:
 Clone the repository
 
 ```bash
-git clone https://github.com/your_username/GenCyberGAN.git
+git clone https://github.com/naveen-kodali12/GenCyberGAN
 ```
 
 Navigate into the project directory
